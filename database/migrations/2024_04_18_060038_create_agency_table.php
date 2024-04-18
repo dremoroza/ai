@@ -14,11 +14,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chats', function (Blueprint $table) {
+        Schema::create('agencies', function (Blueprint $table) {
             $table->id();
             $table->uuid('uid');
-            $table->integer('agency_id');
-            $table->integer('client_id');
+            $table->string('agency_name');
+            $table->enum('status',['1','0'])->default('1');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        Schema::dropIfExists('agencies');
     }
 };

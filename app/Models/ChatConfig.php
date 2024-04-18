@@ -10,4 +10,10 @@ class ChatConfig extends Model
     use HasFactory;
 
     public $timestamps = true;
+
+    protected $fillable = ['agency_id',
+        'client_id',
+        'role',
+        'content',
+   ];
 }
