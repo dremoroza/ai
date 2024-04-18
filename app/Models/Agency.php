@@ -10,6 +10,8 @@ class Agency extends Model
     use HasFactory;
 
     public $timestamps = true;
+    
+    protected $hidden = ['id'];
 
     protected $fillable = ['uid',
      'agency_name',

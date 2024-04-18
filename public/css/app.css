@@ -1,5 +1,7 @@
 @import url(https://fonts.bunny.net/css?family=Nunito);
-
+.chat a {
+  color: #3d64ff;
+}
 /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 *//*
@@ -549,8 +551,17 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .block {
   display: block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -575,6 +586,9 @@ video {
 }
 .h-8 {
   height: 2rem;
+}
+.h-\[45px\] {
+  height: 45px;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -739,6 +753,10 @@ video {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
 .pt-8 {
   padding-top: 2rem;
 }
@@ -753,10 +771,6 @@ video {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
 .font-semibold {
   font-weight: 600;
 }
@@ -765,9 +779,6 @@ video {
 }
 .leading-7 {
   line-height: 1.75rem;
-}
-.leading-none {
-  line-height: 1;
 }
 .tracking-wider {
   letter-spacing: 0.05em;
