@@ -8,6 +8,8 @@ use Response;
 use App\Models\Chat;
 use App\Models\ChatConfig;
 use App\Models\ChatHistory;
+use App\Models\Agency;
+use App\Models\Client;
 
 class ChatController extends Controller
 {
@@ -20,7 +22,9 @@ class ChatController extends Controller
     {
         $data = $request->json()->all();
 
-        $chat = Chat::find($data['id']);
+        $chat = Chat::where('uid', $data['uid'])->first();
+        $agency = Agency::where('uid', $data['agency_uid'])->first();
+        $client = Client::where('uid', $data['client_uid'])->first();
 
         $prompt = [
             'role' => 'user',
@@ -30,8 +34,8 @@ class ChatController extends Controller
         //no chat history
         if(!$chat){
             $chat = new Chat();
-            $chat->agency_id = $data['agency_id'];
-            $chat->client_id = $data['client_id'];
+            $chat->agency_id = $agency->id;
+            $chat->client_id = $client->id;
             
             if($chat->save()) {
 
@@ -58,9 +62,12 @@ class ChatController extends Controller
 
     public function getResponseAi($chatId, $prompt, $data){
 
+        $agency = Agency::where('uid', $data['agency_uid'])->first();
+        $client = Client::where('uid', $data['client_uid'])->first();
+
         $chatConfig = ChatConfig::select('role','content')
-        ->where('agency_id', $data['agency_id'])
-        ->where('client_id', $data['client_id'])
+        ->where('agency_id',  $agency->id)
+        ->where('client_id', $client->id)
         ->get()
         ->toArray();
      
@@ -83,7 +90,7 @@ class ChatController extends Controller
             ->get();
 
         return Response::json(['status'=> true, 
-            'chat'=> Chat::find($chatId),
+            'uid'=> Chat::find($chatId)->uid,
             'chat_history'=> $chatHistory,
         ]);
 
@@ -108,7 +115,22 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        //
+        $chat = Chat::where('uid', $id)->first();
+
+        if($chat){
+            $chatHistory = ChatHistory::where('chat_id', $chat->id)
+            ->get();
+            
+            return Response::json(['status'=> true, 
+                'uid'=> $id,
+                'chat_history'=> $chatHistory,
+            ]);
+        }
+
+        return Response::json(['status'=> false, 
+            'uid'=> $id,
+            'chat_history'=> [],
+         ]);
     }
 
     /**

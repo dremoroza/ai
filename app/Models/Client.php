@@ -11,6 +11,8 @@ class Client extends Model
 
     public $timestamps = true;
 
+    protected $hidden = ['id'];
+
     protected $fillable = ['uid',
      'agency_id',
      'client_name',

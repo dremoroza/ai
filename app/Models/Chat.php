@@ -11,6 +11,8 @@ class Chat extends Model
 
     public $timestamps = true;
 
+    protected $hidden = ['id'];
+
     protected $fillable = ['agency_id',
      'uid',
      'client_id',
