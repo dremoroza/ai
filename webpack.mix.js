@@ -14,4 +14,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css').vue();
 
     mix.version()
-    mix.browserSync('http://ai.virtualcentral.co')    
+    mix.browserSync('http://ai-dev.virtualcentral.co')    
