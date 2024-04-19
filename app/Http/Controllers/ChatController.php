@@ -76,7 +76,7 @@ class ChatController extends Controller
         array_push($chatConfig, $prompt);
 
         $result = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
+            'model' => 'gpt-4-turbo',
             'messages' => $chatConfig,
         ]);
 
