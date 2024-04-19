@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use OpenAI\Laravel\Facades\OpenAI;
 
 use Response;
@@ -34,6 +35,7 @@ class ChatController extends Controller
         //no chat history
         if(!$chat){
             $chat = new Chat();
+            $chat->uid = Str::uuid();
             $chat->agency_id = $agency->id;
             $chat->client_id = $client->id;
             
